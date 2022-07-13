@@ -4,8 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.tasks.R
+import com.example.tasks.service.model.PersonModel
 import com.example.tasks.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -53,7 +58,22 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     /**
      * Observa ViewModel
      */
-    private fun observe() {}
+    private fun observe() {
+            //observa a alteração de algum dado na LoginViewModel e quando alterado chama pra cá
+        mViewModel.login.observe(this, Observer {
+            if (it.status()) {
+                startActivity(Intent(applicationContext, MainActivity::class.java))
+                finish()
+            }else{
+                Toast.makeText(applicationContext,it.message(),Toast.LENGTH_SHORT).show()
+            }
+        })
+        /*mViewModel.loggedUser.observe(this, Observer{
+            if(it){
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+        })*/
+    }
 
     /**
      * Autentica usuário
