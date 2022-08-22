@@ -1,5 +1,5 @@
 # Tasks
-Application is been developed with Retrofit API connection to send and recieve data from the endpoint
+Application developed with Retrofit API connection to send and recieve Tasks from the endpoint data.
 
 Objective: this project is been developed for academic purpose, to get an introdution with Retrofit communication.
 
